@@ -1,0 +1,119 @@
+---
+layout: default
+---
+
+<h2>
+<a id="test" class="anchor" href="#conference-and-meetings" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Conversion Tables</h1>
+
+<p>Power in dBm:</p>
+
+<!--<input id="numb" type="number"> -->
+<!--input id="numb01" type="number">-->
+
+
+<div class="control-group">
+  <label class="control-label" for="dBmToW_data">dBm to W and V (50 Ohm)</label>
+  <div class="controls">
+    <input id="dBmToW_data" name="dBmToW_data" type="text" placeholder="dBm" class="input-xlarge">
+    <p id="dBmtoW_value" class="help-block">Watt and Volts</p>
+  </div>
+</div>
+
+<button type="button" onclick="dBmToW_run()">Convert</button>
+
+
+
+<div class="control-group">
+  <label class="control-label" for="VtodBm_data">V to dBm (50 Ohm)</label>
+  <div class="controls">
+    <input id="VtodBm_data" name="VtodBm_data" type="text" placeholder="V to dBm" class="input-xlarge">
+    <p id="VtodBm_value" class="help-block">dBm</p>
+  </div>
+</div>
+
+
+<button type="button" onclick="VTodBm_run()">Convert V</button>
+
+<p id="demo" type"text" placeholder="value"></p>
+
+<script>
+
+
+var x, text;
+var y, z;
+
+function dBmToW(a) {
+	
+    	return Math.pow(10, (a - 30)/10)
+		}
+function dBmToV(a) {
+		b =  10 * Math.log10(20)
+    	return Math.pow(10, (a - b)/20)
+		}
+
+function VtodBm(a) {
+    //Convert Volts to dBm
+    //Input Voltage in Volts
+    //
+    c = 10 * Math.log10(20)
+    return 20 * Math.log10(a) + c
+    }
+
+
+function dBmToW_run() {
+    
+    // Get the value of the input field with id="numb"
+    x = document.getElementById("dBmToW_data").value;
+    
+
+    // If x is Not a Number or less than one or greater than 10
+    if (isNaN(x)) {
+        text = "Input not valid";
+    } else {
+        text =  dBmToW(x) +  " W - " + dBmToV (x) + "V"; <!-- "Input OK" -->
+    }
+    document.getElementById("dBmtoW_value").innerHTML = text;
+}
+
+function VTodBm_run() {
+    
+    // Get the value of the input field with id="numb"
+    x = document.getElementById("VtodBm_data").value;
+    
+
+    // If x is Not a Number or less than one or greater than 10
+    if (isNaN(x)) {
+        text = "Input not valid";
+    } else {
+        text =  VtodBm(x) +  " dBm"; <!-- "Input OK" -->
+    }
+    document.getElementById("VtodBm_value").innerHTML = text;
+}
+
+function myFunction() {
+    
+    // Get the value of the input field with id="numb"
+    x = document.getElementById("numb").value;
+    y = document.getElementById("numb01").value;
+    z = x + y
+    
+	
+
+    // If x is Not a Number or less than one or greater than 10
+    if (isNaN(x) || x < 1 || x > 10) {
+        text = "Input not valid";
+    } else {
+        text =  myMult(x,y); <!-- "Input OK" -->
+    }
+    document.getElementById("demo").innerHTML = text;
+}
+
+</script>
+
+</body>
+</html> 
